@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EQUALIFY | Creating a world of equality</title>
+<link rel="icon" type="image/png" href="equalify-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <a href="#home" class="brand"><img src="equalify-logo.png" alt="EQUALIFY"></a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="links" aria-label="Menu">☰</button>
+  <nav id="links" class="links" aria-label="Main">
+    <a href="#home">Home</a>
+    <a href="#learn">Learn</a>
+    <a href="#play">Play</a>
+    <a href="#help">Get help</a>
+    <a href="#community">Community</a>
+    <a href="#account" id="acct" class="acct">Log in</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- HOME -->
+<section class="view" id="v-home">
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Your gender should never limit your dreams.</h1>
+      <p>EQUALIFY helps you understand gender inequality, spot it when it happens, and know what to do about it. Learn the facts, play to test yourself, and find the right next step.</p>
+      <div class="row">
+        <a class="btn" href="#help">I need help with something</a>
+        <a class="btn ghost" href="#play">Play a game</a>
+      </div>
+    </div>
+    <div class="equals" aria-hidden="true"><span></span><span></span></div>
+  </div>
+  <div class="wrap">
+    <h2>Three ways to use EQUALIFY</h2>
+    <div class="grid3">
+      <a class="tile" href="#learn"><h3>Understand it</h3><p>Plain-language guides on stereotypes, equal pay, safe spaces and SDG 5.</p></a>
+      <a class="tile" href="#help"><h3>Solve a problem</h3><p>Pick what happened at school, work, online or at home. Get clear steps and who to contact.</p></a>
+      <a class="tile" href="#play"><h3>Practice it</h3><p>Three games: bust myths, handle real situations, and match the key terms.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section class="view" id="v-learn" hidden>
+  <div class="wrap narrow">
+    <h1>Learn the basics</h1>
+    <p class="lead">Tap a topic to open it.</p>
+    <div id="topics"></div>
+  </div>
+</section>
+
+<!-- PLAY -->
+<section class="view" id="v-play" hidden>
+  <div class="wrap">
+    <h1>Play</h1>
+    <p class="lead">Every correct answer earns points. <a href="#account">Log in</a> to keep your points and badges.</p>
+    <div class="grid3" id="game-menu">
+      <button class="tile" data-game="myth"><h3>Myth or fact?</h3><p>Decide if each statement is a stereotype or true. 8 rounds.</p></button>
+      <button class="tile" data-game="scenario"><h3>What would you do?</h3><p>Three real situations. Choose the response that helps most.</p></button>
+      <button class="tile" data-game="match"><h3>Match the terms</h3><p>Pair each key word with its meaning, against the clock.</p></button>
+      <button class="tile" data-game="word"><h3>Word search</h3><p>Find 6 equality words hidden in a letter grid.</p></button>
+    </div>
+    <div id="stage" class="stage" aria-live="polite" hidden></div>
+  </div>
+</section>
+
+<!-- HELP -->
+<section class="view" id="v-help" hidden>
+  <div class="wrap narrow">
+    <h1>Get help</h1>
+    <p class="lead">Where did it happen? You'll get steps you can take and who can support you.</p>
+    <div class="chips" id="situations" role="group" aria-label="Where did it happen"></div>
+    <div id="help-out" class="panel" hidden></div>
+    <p class="note">If you are in immediate danger, call your local emergency number (911 in the Philippines). EQUALIFY gives general information and is not legal advice.</p>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="view" id="v-community" hidden>
+  <div class="wrap narrow">
+    <h1>Community</h1>
+    <p class="lead">Make a pledge and share what equality means to you.</p>
+    <div class="panel pledge">
+      <h2>The EQUALIFY pledge</h2>
+      <p>I will speak up when someone is treated unfairly, challenge stereotypes, and respect every person's dreams.</p>
+      <button class="btn" id="pledge-btn">Take the pledge</button>
+      <p id="pledge-msg" class="msg"></p>
+    </div>
+    <h2>Share a reflection</h2>
+    <form id="reflect" class="panel">
+      <label for="r-text">What does gender equality mean to you?</label>
+      <textarea id="r-text" maxlength="300" rows="4" required></textarea>
+      <p class="note">Don't include names or private details. Reflections are saved only in this browser. You need to be logged in to post.</p>
+      <button class="btn" type="submit">Post reflection</button>
+      <p id="r-msg" class="msg"></p>
+    </form>
+    <div id="wall"></div>
+  </div>
+</section>
+
+<!-- ACCOUNT -->
+<section class="view" id="v-account" hidden>
+  <div class="wrap narrow" id="account-box"></div>
+</section>
+
+</main>
+
+<footer>
+  <img src="equalify-logo.png" alt="" class="foot-logo">
+  <p>Creating a world of equality. © 2026 EQUALIFY | Group 5</p>
+</footer>
+
+<!-- ASSISTANT -->
+<button class="fab" id="ai-fab" aria-expanded="false" aria-controls="ai-panel">Ask Equa</button>
+<div class="ai" id="ai-panel" hidden role="dialog" aria-label="Ask Equa, the EQUALIFY assistant">
+  <div class="ai-head"><strong>Equa</strong><button id="ai-close" aria-label="Close assistant">✕</button></div>
+  <div class="ai-log" id="ai-log" aria-live="polite"></div>
+  <div class="ai-sugg" id="ai-sugg"></div>
+  <form class="ai-form" id="ai-form">
+    <input id="ai-input" maxlength="200" placeholder="Ask about gender equality..." aria-label="Your question" autocomplete="off">
+    <button class="btn" type="submit">Send</button>
+  </form>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
